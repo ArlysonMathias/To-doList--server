@@ -1,11 +1,12 @@
 import * as atividadesService from '../services/atividades.service.js';
 
-//getAll
+//Buscar todas atividades - Controller
 export const findAllAtividades = (req, res) => {
   const atividades = atividadesService.findAllAtividadesService();
   res.send(atividades);
 };
 
+//Buscar atividade pelo ID - Controller
 export const findByIdAtividade = (req, res) => {
   const idParam = Number(req.params.id);
 
@@ -15,13 +16,14 @@ export const findByIdAtividade = (req, res) => {
 
   const ativEscolhida = atividadesService.findByIdAtividadeService(idParam);
 
-  if(!ativEscolhida){
-    return res.status(404).send({message: "Tarefa não encontrada."})
+  if (!ativEscolhida) {
+    return res.status(404).send({ message: 'Tarefa não encontrada.' });
   }
 
   res.send(ativEscolhida);
 };
 
+//Criar atividade - Controller
 export const createAtividadeController = (req, res) => {
   const formulario = req.body;
 
@@ -34,6 +36,7 @@ export const createAtividadeController = (req, res) => {
   res.status(201).send(newAtividade);
 };
 
+//Atualizar atividade - Controller
 export const updateAtividadeController = (req, res) => {
   const idParam = Number(req.params.id);
   const atividadeEditada = req.body;
@@ -45,6 +48,7 @@ export const updateAtividadeController = (req, res) => {
   res.send(updateAtividade);
 };
 
+//Deletar Atividade - Controller
 export const deleteAtividadeController = (req, res) => {
   const idParam = Number(req.params.id);
   atividadesService.deleteAtividadeService(idParam);

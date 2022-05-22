@@ -22,15 +22,8 @@ export const findByIdAtividadeService = (idParam) => {
 };
 
 export const createAtividadeService = (newAtividade) => {
-  // const newId = atividades.length + 1;
-  // if(newId == atividades.length){
-  //   newId = newId+1
-  // }
-
   const newId =
-    atividades.length === 0? 1: atividades[atividades.length - 1].id + 1;
-
-  
+    atividades.length === 0 ? 1 : atividades[atividades.length - 1].id + 1;
 
   newAtividade.id = newId;
   atividades.push(newAtividade);
@@ -53,6 +46,6 @@ export const deleteAtividadeService = (id) => {
   const atividadeIndex = atividades.findIndex(
     (atividade) => atividade.id == id,
   );
-  console.log(id)
+  console.log(id);
   return atividades.splice(atividadeIndex, 1);
 };
