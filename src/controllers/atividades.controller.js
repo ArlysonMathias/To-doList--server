@@ -51,7 +51,17 @@ export const updateAtividadeController = (req, res) => {
 //Deletar Atividade - Controller
 export const deleteAtividadeController = (req, res) => {
   const idParam = Number(req.params.id);
+
+  if (idParam == 0) {
+    res.send('Id inválido');
+  }
   atividadesService.deleteAtividadeService(idParam);
 
-  res.send('Atividade apagada.');
+  const ativEscolhida = atividadesService.findByIdAtividadeService(idParam);
+
+  if (!ativEscolhida) {
+    return res.status(404).send({ message: 'Tarefa não encontrada.' });
+  }
+
+  res.status(200).send({ message: 'Atividade apagada.' });
 };
